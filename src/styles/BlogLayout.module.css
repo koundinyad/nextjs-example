@@ -1,0 +1,44 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.nav {
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navItem a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.navItem a:hover {
+  color: #0070f3;
+}
+
+.main {
+  padding: 20px 0;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  padding: 10px 20px;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+}
