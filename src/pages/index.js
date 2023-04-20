@@ -1,7 +1,16 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import useSWR from "swr";
 
-export default function Home({ data }) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+export default function Home() {
+  // Fetch dad jokes API
+  const { data, isLoading, error } = useSWR(
+    "https://official-joke-api.appspot.com/random_joke",
+    fetcher
+  );
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,8 +21,10 @@ export default function Home({ data }) {
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome to my demo app</h1>
 
-        <p className={styles.description}>
-          Here's some data from an API endpoint: {data}
+        <p className={styles.card}>
+          Here's some data from a random joke API endpoint: <br />
+          {isLoading && "Loading..."}
+          {JSON.stringify(data)}
         </p>
 
         <div className={styles.grid}>
@@ -32,16 +43,4 @@ export default function Home({ data }) {
       <footer className={styles.footer}> 2023</footer>
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  // Fetch data from an API endpoint
-  const response = await fetch("https://jsonplaceholder.typicode.com/todos/1");
-  const data = await response.json();
-
-  return {
-    props: {
-      data: data.title,
-    },
-  };
 }
